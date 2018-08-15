@@ -20,5 +20,10 @@ public class ArithmeticContorller {
         return test;
     }
 
+    @RequestMapping(value = "/hello",method = RequestMethod.GET)
+    public String hello(){
+        return "hello";
+    }
+
 
 }
