@@ -1,10 +1,10 @@
 package com.shenyue.IC50;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 
@@ -12,17 +12,30 @@ import java.util.HashMap;
 @RequestMapping("/arithmetic")
 public class ArithmeticContorller {
 
+    @Autowired
+    UploadFileService uploadFileService;
+
     @RequestMapping(value = "/test",method = RequestMethod.GET)
     @ResponseBody
-    public HashMap getTest(){
+    public ResultDTO<HashMap> getTest(){
+        ResultDTO<HashMap> resultDTO = new ResultDTO<>();
         HashMap test = new HashMap();
         test.put("test","success");
-        return test;
+        resultDTO.setData(test);
+        resultDTO.setCode(200);
+        resultDTO.setMsg("success");
+        return resultDTO;
     }
 
     @RequestMapping(value = "/hello",method = RequestMethod.GET)
-    public String hello(){
-        return "hello";
+    public String hello(Model model){
+        return "/";
+    }
+
+    @RequestMapping(value = "/uploadFile",method = RequestMethod.POST)
+    @ResponseBody
+    public ResultDTO<TableData<String>> uploadFile(@RequestParam(value = "file")MultipartFile file){
+        return uploadFileService.uploadFile(file);
     }
 
 
