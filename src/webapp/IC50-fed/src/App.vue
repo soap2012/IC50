@@ -4,11 +4,11 @@
     <!--<router-view/>-->
   <!--</div>-->
   <el-container style="height: 100%;">
-    <el-header>Header</el-header>
+    <el-header>快速计算你的IC50</el-header>
     <el-main>
       <router-view/>
     </el-main>
-    <el-footer>Footer</el-footer>
+    <el-footer>喜欢的可以点个赞</el-footer>
   </el-container>
 </template>
 
